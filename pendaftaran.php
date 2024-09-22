@@ -134,10 +134,88 @@
                         <label for="jk">Agama</label>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="anak_ke" name="anak_ke" placeholder="Tempat Lahir">
+                        <label for="anak_ke">Anak Ke</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="bersaudara" name="bersaudara" placeholder="Tempat Lahir">
+                        <label for="bersaudara">Dari Berapa Saudara</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="sekolah_asal" name="sekolah_asal" placeholder="Tempat Lahir">
+                        <label for="sekolah_asal">Sekolah Asal</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="alamat_sekolah_asal" name="alamat_sekolah_asal" placeholder="Tempat Lahir">
+                        <label for="alamat_sekolah_asal">Alamat Sekolah Asal</label>
+                    </div>
+                </div>
+                <div class="col-md-full">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="no_kk" name="no_kk" placeholder="Tempat Lahir">
+                        <label for="no_kk">Nomor Kartu Keluarga</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="nik_ayah" name="nik_ayah" placeholder="Tempat Lahir">
+                        <label for="nik_ayah">NIK Ayah</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="nama_ayah" name="nama_ayah" placeholder="Tempat Lahir">
+                        <label for="nama_ayah">Nama Ayah</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="nik_ibu" name="nik_ibu" placeholder="Tempat Lahir">
+                        <label for="nik_ibu">NIK Ibu</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" placeholder="Tempat Lahir">
+                        <label for="nama_ibu">Nama Ibu</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="pekerjaan_ayah" name="pekerjaan_ayah" placeholder="Tempat Lahir">
+                        <label for="pekerjaan_ayah">Pekerjaan Ayah</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="pekerjaan_ibu" name="pekerjaan_ibu" placeholder="Tempat Lahir">
+                        <label for="pekerjaan_ibu">Pekerjaan Ibu</label>
+                    </div>
+                </div>
+                <div class="col-md-full">
+                    <div class="form-floating">
+                        <select class="form-select" id="kategori_penghasilan" name="kategori_penghasilan">
+                            <option selected disabled>Rentang penghasilan:</option>
+                            <option value="rendah">< Rp. 2.000.000 per bulan</option>
+                            <option value="sedang">> Rp. 2.000.000 - Rp. 3.000.000 per bulan</option>
+                            <option value="tinggi">> Rp. 3.000.000 - Rp. 4.000.000 per bulan</option>
+                            <option value="sangat tinggi">> Rp. 4.000.000 per bulan</option>
+                        </select>
+                        <label for="jk">Agama</label>
+                    </div>
+                </div>
                 <div class="col-12">
                     <div class="form-floating">
                         <textarea class="form-control" placeholder="Alamat" id="alamat" name="alamat" style="height: 150px"></textarea>
-                        <label for="alamat">Alamat</label>
+                        <label for="alamat">Alamat Lengkap</label>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -147,7 +225,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-floating">
+                    <div class="form-floating bg-light">
                         <input class="form-control" name="pasfoto" type="file" id="pasfoto">
                         <label for="pasfoto">Upload Pasfoto Warna</label>
                     </div>
