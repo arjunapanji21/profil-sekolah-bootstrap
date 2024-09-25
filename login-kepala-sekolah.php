@@ -5,22 +5,28 @@ require_once("config.php");
 if(isset($_POST['login'])){
 
     // filter data yang diinputkan
-    $nisn = filter_input(INPUT_POST, 'nisn', FILTER_UNSAFE_RAW);
-    $tgl_lahir = filter_input(INPUT_POST, 'tgl_lahir', FILTER_UNSAFE_RAW);
-    $sql = "SELECT * FROM calon_siswa WHERE nisn='$nisn' AND tgl_lahir='$tgl_lahir'";
+    $username = filter_input(INPUT_POST, 'username', FILTER_UNSAFE_RAW);
+    $password = filter_input(INPUT_POST, 'password', FILTER_UNSAFE_RAW);
+
+    $sql = "SELECT * FROM kepala_sekolah WHERE username='$username'";
     $result = $conn->query($sql);
-    $user = $result->fetch_assoc();
-    if ($user > 0) {
-        session_start();
-        $_SESSION["user"] = $user;
-        $conn->close();
-        header("Location: app/calon-siswa/dashboard.php");
-    }
-     else {
+    $kepsek = $result->fetch_assoc();
+    if ($kepsek > 0) {
+        // verifikasi password
+        if(password_verify($password, $kepsek["password"])){
+            // buat Session
+            session_start();
+            $_SESSION["kepala_sekolah"] = $kepsek;
+            // login sukses, alihkan ke halaman timeline
+            $conn->close();
+            header("Location: app/kepala-sekolah/dashboard.php");
+        }else{
+            header("Location: login-kepala-sekolah.php");
+        }
+    } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
         $conn->close();
-        // die();
-        header("Location: login.php");
+        die();
     }
 }
 
@@ -49,7 +55,7 @@ if(isset($_POST['login'])){
         <div class="container py-5">
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
-                    <h1 class="display-3 text-white animated slideInDown">Login</h1>
+                    <h1 class="display-3 text-white animated slideInDown">Login Kepala Sekolah</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
@@ -70,14 +76,14 @@ if(isset($_POST['login'])){
             <div class="row g-3">
                 <div class="col-5">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="nisn" name="nisn" require placeholder="NISN">
-                        <label for="nisn">NISN</label>
+                        <input type="text" class="form-control" id="username" name="username" require placeholder="Username">
+                        <label for="username">Username</label>
                     </div>
                 </div>
                 <div class="col-5">
                     <div class="form-floating">
-                        <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" require placeholder="Tgl. Lahir">
-                        <label for="tgl_lahir">Tgl. Lahir</label>
+                        <input type="password" class="form-control" id="password" name="password" require placeholder="Password">
+                        <label for="password">Password</label>
                     </div>
                 </div>
                 <div class="col-2">
