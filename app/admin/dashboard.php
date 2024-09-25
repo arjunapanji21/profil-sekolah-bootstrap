@@ -4,6 +4,8 @@ if(!isset($_SESSION["admin"])) header("Location: ../../login-admin.php");
 
 require_once('../../config.php');
 $calon_siswa = $conn->query("SELECT * FROM calon_siswa");
+$calon_siswa_lulus = $conn->query("SELECT * FROM calon_siswa LEFT JOIN pendaftaran ON calon_siswa.id = pendaftaran.calon_siswa_id WHERE pendaftaran.status='Lulus'");
+$calon_siswa_tidak_lulus = $conn->query("SELECT * FROM calon_siswa LEFT JOIN pendaftaran ON calon_siswa.id = pendaftaran.calon_siswa_id WHERE pendaftaran.status='Tidak Lulus'");
 $jumlah_admin = $conn->query("SELECT * FROM admin");
 ?>
 
@@ -151,7 +153,7 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
               </div>
               <div class="card-body">
                 <h1 class="card-title font-weight-bold" style="font-size: 32pt; width: 100%; text-align: right;">
-                <?php echo $calon_siswa->num_rows ?>
+                <?php echo $calon_siswa_lulus->num_rows ?>
               </h1>
               </div>
             </div>
@@ -163,7 +165,7 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
               </div>
               <div class="card-body">
                 <h1 class="card-title font-weight-bold" style="font-size: 32pt; width: 100%; text-align: right;">
-                <?php echo $calon_siswa->num_rows ?>
+                <?php echo $calon_siswa_tidak_lulus->num_rows ?>
               </h1>
               </div>
             </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 25, 2024 at 04:15 PM
+-- Generation Time: Sep 25, 2024 at 04:30 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.14
 
@@ -144,7 +144,7 @@ CREATE TABLE `pendaftaran` (
 --
 
 INSERT INTO `pendaftaran` (`id`, `calon_siswa_id`, `pasfoto`, `ijazah`, `status`, `keterangan`, `tgl_dibuat`) VALUES
-(2, 2, NULL, NULL, 'Proses', 'Lengkapi Berkas', '2024-09-25 21:35:14');
+(2, 2, NULL, NULL, 'Proses', 'Upload pasfoto', '2024-09-25 21:35:14');
 
 --
 -- Indexes for dumped tables

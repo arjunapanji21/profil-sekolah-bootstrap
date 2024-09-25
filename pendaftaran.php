@@ -76,12 +76,10 @@ if(isset($_POST['register'])){
         $sql = "INSERT INTO pendaftaran (
             calon_siswa_id,
             status,
-            keterangan
         )
         VALUES (
             '$calon_siswa_id',
             'Proses',
-            'Lengkapi Berkas'
         )";
         $conn->query($sql);
         echo "New record created successfully";

@@ -165,9 +165,27 @@ $data = $conn->query("SELECT * FROM admin");
                 <td><?php echo $row['email'] ?></td>
                 <td><?php echo date('d-m-Y H:i', strtotime($row['tgl_dibuat'])) ?></td>
                 <td>
-                    <button class="btn btn-sm btn-primary">
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#<?php echo $row['username']?>">
                       <i class="fas fa-pen fa-xs"></i>
                     </button>
+                    <!-- Modal -->
+                      <div class="modal fade" id="<?php echo $row['username']?>" tabindex="-1" aria-labelledby="<?php echo $row['username']?>Label" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="<?php echo $row['username']?>Label">Edit Data Admin</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              ...
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </td>
             </tr>
             <?php } ?>

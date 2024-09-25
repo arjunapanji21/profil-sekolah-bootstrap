@@ -52,7 +52,7 @@ $calon_siswa = $calon_siswa->fetch_assoc();
       <!-- SidebarSearch Form -->
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
-          <input class="form-control form-control-sidebar" type="search" value="<?php echo $calon_siswa['nisn'] ?>" placeholder="Search" aria-label="Search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
           <div class="input-group-append">
             <button class="btn btn-sidebar">
               <i class="fas fa-search fa-fw"></i>
@@ -81,7 +81,7 @@ $calon_siswa = $calon_siswa->fetch_assoc();
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="data-kepala-sekolah.php" class="nav-link">
               <i class="nav-icon fas fa-user-tie"></i>
               <p>
                 Data Kepala Sekolah
@@ -89,7 +89,7 @@ $calon_siswa = $calon_siswa->fetch_assoc();
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="data-admin.php" class="nav-link">
               <i class="nav-icon fas fa-user-tie"></i>
               <p>
                 Data Admin
@@ -282,7 +282,7 @@ $calon_siswa = $calon_siswa->fetch_assoc();
                             <option selected disabled>Pilih status pendaftaran calon siswa:</option>
                             <option <?php if($calon_siswa['status'] == 'Proses') echo 'selected' ?> value="Proses">Proses</option>
                             <option <?php if($calon_siswa['status'] == 'Lulus') echo 'selected' ?> value="Lulus">Lulus</option>
-                            <option <?php if($calon_siswa['status'] == 'Belum Lulus') echo 'selected' ?> value="Belum Lulus">Belum Lulus</option>
+                            <option <?php if($calon_siswa['status'] == 'Tidak Lulus') echo 'selected' ?> value="Tidak Lulus">Tidak Lulus</option>
                         </select>
                         <label for="status">Status Pendaftaran Calon Siswa</label>
                     </div>
