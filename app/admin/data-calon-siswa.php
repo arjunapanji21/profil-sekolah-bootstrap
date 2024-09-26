@@ -29,7 +29,7 @@ $data = $conn->query("SELECT * FROM calon_siswa");
   ?>
 
   <!-- Sidebar -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-info elevation-4">
     <!-- Brand Logo -->
     <label class="brand-link">
       <span class="brand-text">MTs Mau'izhah</span>

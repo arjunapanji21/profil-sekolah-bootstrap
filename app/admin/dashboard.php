@@ -30,7 +30,7 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
   ?>
 
   <!-- Sidebar -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-info elevation-4">
     <!-- Brand Logo -->
     <label class="brand-link">
       <span class="brand-text">MTs Mau'izhah</span>
@@ -134,8 +134,8 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-lg-3">
-            <div class="card card-primary card-outline">
+          <div class="col-6 col-lg-3">
+            <div class="card card-warning card-outline">
               <div class="card-header">
                 <h5 class="m-0">Calon Siswa Mendaftar</h5>
               </div>
@@ -146,8 +146,8 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
               </div>
             </div>
           </div>
-          <div class="col-lg-3">
-            <div class="card card-primary card-outline">
+          <div class="col-6 col-lg-3">
+            <div class="card card-success card-outline">
               <div class="card-header">
                 <h5 class="m-0">Calon Siswa Lulus</h5>
               </div>
@@ -158,8 +158,8 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
               </div>
             </div>
           </div>
-          <div class="col-lg-3">
-            <div class="card card-primary card-outline">
+          <div class="col-6 col-lg-3">
+            <div class="card card-danger card-outline">
               <div class="card-header">
                 <h5 class="m-0">Calon Siswa Tidak Lulus</h5>
               </div>
@@ -170,8 +170,8 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
               </div>
             </div>
           </div>
-          <div class="col-lg-3">
-            <div class="card card-primary card-outline">
+          <div class="col-6 col-lg-3">
+            <div class="card card-info card-outline">
               <div class="card-header">
                 <h5 class="m-0">Jumlah Admin</h5>
               </div>

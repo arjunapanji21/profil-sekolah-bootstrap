@@ -5566,41 +5566,41 @@ body.text-sm .input-group-text {
   background: #454d55;
 }
 
-.card-primary:not(.card-outline) > .card-header {
+.card-info:not(.card-outline) > .card-header {
   background-color: #007bff;
 }
 
-.card-primary:not(.card-outline) > .card-header,
-.card-primary:not(.card-outline) > .card-header a {
+.card-info:not(.card-outline) > .card-header,
+.card-info:not(.card-outline) > .card-header a {
   color: #fff;
 }
 
-.card-primary:not(.card-outline) > .card-header a.active {
+.card-info:not(.card-outline) > .card-header a.active {
   color: #1f2d3d;
 }
 
-.card-primary.card-outline {
+.card-info.card-outline {
   border-top: 3px solid #007bff;
 }
 
-.card-primary.card-outline-tabs > .card-header a:hover {
+.card-info.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.card-primary.card-outline-tabs > .card-header a.active,
-.card-primary.card-outline-tabs > .card-header a.active:hover {
+.card-info.card-outline-tabs > .card-header a.active,
+.card-info.card-outline-tabs > .card-header a.active:hover {
   border-top: 3px solid #007bff;
 }
 
 .bg-primary > .card-header .btn-tool,
 .bg-gradient-primary > .card-header .btn-tool,
-.card-primary:not(.card-outline) > .card-header .btn-tool {
+.card-info:not(.card-outline) > .card-header .btn-tool {
   color: rgba(255, 255, 255, 0.8);
 }
 
 .bg-primary > .card-header .btn-tool:hover,
 .bg-gradient-primary > .card-header .btn-tool:hover,
-.card-primary:not(.card-outline) > .card-header .btn-tool:hover {
+.card-info:not(.card-outline) > .card-header .btn-tool:hover {
   color: #fff;
 }
 
@@ -8004,41 +8004,41 @@ html.maximized-card {
   border-left: 0;
 }
 
-.dark-mode .card-primary:not(.card-outline) > .card-header {
+.dark-mode .card-info:not(.card-outline) > .card-header {
   background-color: #3f6791;
 }
 
-.dark-mode .card-primary:not(.card-outline) > .card-header,
-.dark-mode .card-primary:not(.card-outline) > .card-header a {
+.dark-mode .card-info:not(.card-outline) > .card-header,
+.dark-mode .card-info:not(.card-outline) > .card-header a {
   color: #fff;
 }
 
-.dark-mode .card-primary:not(.card-outline) > .card-header a.active {
+.dark-mode .card-info:not(.card-outline) > .card-header a.active {
   color: #1f2d3d;
 }
 
-.dark-mode .card-primary.card-outline {
+.dark-mode .card-info.card-outline {
   border-top: 3px solid #3f6791;
 }
 
-.dark-mode .card-primary.card-outline-tabs > .card-header a:hover {
+.dark-mode .card-info.card-outline-tabs > .card-header a:hover {
   border-top: 3px solid #dee2e6;
 }
 
-.dark-mode .card-primary.card-outline-tabs > .card-header a.active,
-.dark-mode .card-primary.card-outline-tabs > .card-header a.active:hover {
+.dark-mode .card-info.card-outline-tabs > .card-header a.active,
+.dark-mode .card-info.card-outline-tabs > .card-header a.active:hover {
   border-top: 3px solid #3f6791;
 }
 
 .dark-mode .bg-primary > .card-header .btn-tool,
 .dark-mode .bg-gradient-primary > .card-header .btn-tool,
-.dark-mode .card-primary:not(.card-outline) > .card-header .btn-tool {
+.dark-mode .card-info:not(.card-outline) > .card-header .btn-tool {
   color: rgba(255, 255, 255, 0.8);
 }
 
 .dark-mode .bg-primary > .card-header .btn-tool:hover,
 .dark-mode .bg-gradient-primary > .card-header .btn-tool:hover,
-.dark-mode .card-primary:not(.card-outline) > .card-header .btn-tool:hover {
+.dark-mode .card-info:not(.card-outline) > .card-header .btn-tool:hover {
   color: #fff;
 }
 

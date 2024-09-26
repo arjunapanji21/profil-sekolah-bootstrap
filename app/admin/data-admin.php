@@ -4,6 +4,40 @@ if(!isset($_SESSION["admin"])) header("Location: ../../login-admin.php");
 
 require_once('../../config.php');
 $data = $conn->query("SELECT * FROM admin");
+
+if(isset($_POST['simpan'])){
+  $nama = $_POST['nama'];
+  $email = $_POST['email'];
+  $username = $_POST['username'];
+  $alamat = $_POST['alamat'];
+  $telp = $_POST['telp'];
+
+  $sql = "UPDATE admin SET nama='$nama', email='$email', alamat='$alamat', telp='$telp' WHERE username='$username'";
+
+  if (mysqli_query($conn, $sql)) {
+    $_SESSION['alert'] = "Data admin berhasil di Update!";
+    header("Location: data-admin.php");
+  } else {
+    $_SESSION['alert'] = "Error updating record: " . mysqli_error($conn);
+    header("Location: data-admin.php");
+  }
+
+  if(isset($_POST['password']) && $_POST['password'] != null){
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    $sql = "UPDATE admin SET password='$password' WHERE username='$username'";
+
+    if (mysqli_query($conn, $sql)) {
+      $_SESSION['alert'] = "Data admin berhasil di Update!";
+      header("Location: data-admin.php");
+    } else {
+      $_SESSION['alert'] = "Error updating record: " . mysqli_error($conn);
+      header("Location: data-admin.php");
+    }
+  }
+
+  mysqli_close($conn);
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +63,7 @@ $data = $conn->query("SELECT * FROM admin");
   ?>
 
   <!-- Sidebar -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-info elevation-4">
     <!-- Brand Logo -->
     <label class="brand-link">
       <span class="brand-text">MTs Mau'izhah</span>
@@ -132,16 +166,6 @@ $data = $conn->query("SELECT * FROM admin");
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <?php if(isset($_SESSION['alert'])) { ?>
-          <div class="row">
-                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Alert!</strong> <?php echo $_SESSION['alert']; unset($_SESSION['alert']);?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        </div>
-        <?php } ?>
         <div class="row m-2 p-2 bg-light shadow-sm">
         <table id="example" class="table table-striped" style="width:100%">
         <thead>
@@ -169,6 +193,7 @@ $data = $conn->query("SELECT * FROM admin");
                       <i class="fas fa-pen fa-xs"></i>
                     </button>
                     <!-- Modal -->
+                      <form action="" method="post">
                       <div class="modal fade" id="<?php echo $row['username']?>" tabindex="-1" aria-labelledby="<?php echo $row['username']?>Label" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
@@ -177,15 +202,51 @@ $data = $conn->query("SELECT * FROM admin");
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              ...
+                            <div class="col-12 my-2">
+                                  <div class="form-floating">
+                                      <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $row['nama'] ?>" placeholder="Nama">
+                                      <label for="nama">Nama</label>
+                                  </div>
+                              </div>
+                            <div class="col-12 my-2">
+                                  <div class="form-floating">
+                                      <input type="email" class="form-control" id="email" name="email" value="<?php echo $row['email'] ?>" placeholder="email">
+                                      <label for="email">Email</label>
+                                  </div>
+                              </div>
+                            <div class="col-12 my-2">
+                                  <div class="form-floating">
+                                      <input readonly type="username" class="form-control" id="username" name="username" value="<?php echo $row['username'] ?>" placeholder="username">
+                                      <label for="username">Username</label>
+                                  </div>
+                              </div>
+                            <div class="col-12 my-2">
+                                  <div class="form-floating">
+                                      <input type="alamat" class="form-control" id="alamat" name="alamat" value="<?php echo $row['alamat'] ?>" placeholder="alamat">
+                                      <label for="alamat">Alamat</label>
+                                  </div>
+                              </div>
+                            <div class="col-12 my-2">
+                                  <div class="form-floating">
+                                      <input type="telp" class="form-control" id="telp" name="telp" value="<?php echo $row['telp'] ?>" placeholder="telp">
+                                      <label for="telp">Telepon</label>
+                                  </div>
+                              </div>
+                            <div class="col-12 my-2">
+                                  <div class="form-floating">
+                                      <input type="password" class="form-control" id="password" name="password" placeholder="password">
+                                      <label for="password">Password</label>
+                                  </div>
+                              </div>
                             </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
+                            <div class="modal-footer" style="justify-content: space-between;">
+                              <a onclick="return confirm('Hapus data admin ini?')" type="button" class="btn btn-danger">Hapus</a>
+                              <button type="submit" class="btn btn-primary" name="simpan" value="simpan">Simpan</button>
                             </div>
                           </div>
                         </div>
                       </div>
+                      </form>
                 </td>
             </tr>
             <?php } ?>

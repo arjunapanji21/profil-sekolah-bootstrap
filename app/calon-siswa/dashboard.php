@@ -28,7 +28,7 @@ $calon_siswa = $calon_siswa->fetch_assoc();
   ?>
 
   <!-- Sidebar -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-info elevation-4">
     <!-- Brand Logo -->
     <label class="brand-link">
       <span class="brand-text">MTs Mau'izhah</span>
@@ -139,7 +139,7 @@ $calon_siswa = $calon_siswa->fetch_assoc();
           <?php } ?>
           <?php if($calon_siswa['status'] == "Lulus") { ?>
             <div class="col-12">
-            <div class="card card-primary card-outline">
+            <div class="card card-info card-outline">
             <div class="card-header">
                 Pengumuman
               </div>
@@ -152,7 +152,7 @@ $calon_siswa = $calon_siswa->fetch_assoc();
           <?php } ?>
           <?php if($calon_siswa['status'] == "Belum Lulus") { ?>
             <div class="col-12">
-            <div class="card card-primary card-outline">
+            <div class="card card-info card-outline">
             <div class="card-header">
                 Pengumuman
               </div>
@@ -165,7 +165,7 @@ $calon_siswa = $calon_siswa->fetch_assoc();
           <?php } ?>
           <?php if($calon_siswa['status'] == "Proses") { ?>
             <div class="col-12">
-            <div class="card card-primary card-outline">
+            <div class="card card-info card-outline">
             <div class="card-header">
                 Pengumuman
               </div>

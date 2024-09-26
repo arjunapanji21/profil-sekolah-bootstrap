@@ -29,7 +29,7 @@ $data = $conn->query("SELECT * FROM kepala_sekolah");
   ?>
 
   <!-- Sidebar -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-info elevation-4">
     <!-- Brand Logo -->
     <label class="brand-link">
       <span class="brand-text">MTs Mau'izhah</span>
@@ -165,9 +165,62 @@ $data = $conn->query("SELECT * FROM kepala_sekolah");
                 <td><?php echo $row['email'] ?></td>
                 <td><?php echo date('d-m-Y H:i', strtotime($row['tgl_dibuat'])) ?></td>
                 <td>
-                    <button class="btn btn-sm btn-primary">
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#<?php echo $row['username']?>">
                       <i class="fas fa-pen fa-xs"></i>
                     </button>
+                    <!-- Modal -->
+                      <div class="modal fade" id="<?php echo $row['username']?>" tabindex="-1" aria-labelledby="<?php echo $row['username']?>Label" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="<?php echo $row['username']?>Label">Edit Data Kepala Sekolah</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            <div class="col-12 my-2">
+                                  <div class="form-floating">
+                                      <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $row['nama'] ?>" placeholder="Nama">
+                                      <label for="nama">Nama</label>
+                                  </div>
+                              </div>
+                            <div class="col-12 my-2">
+                                  <div class="form-floating">
+                                      <input type="email" class="form-control" id="email" name="email" value="<?php echo $row['email'] ?>" placeholder="email">
+                                      <label for="email">Email</label>
+                                  </div>
+                              </div>
+                            <div class="col-12 my-2">
+                                  <div class="form-floating">
+                                      <input type="username" class="form-control" id="username" name="username" value="<?php echo $row['username'] ?>" placeholder="username">
+                                      <label for="username">Username</label>
+                                  </div>
+                              </div>
+                            <div class="col-12 my-2">
+                                  <div class="form-floating">
+                                      <input type="alamat" class="form-control" id="alamat" name="alamat" value="<?php echo $row['alamat'] ?>" placeholder="alamat">
+                                      <label for="alamat">Alamat</label>
+                                  </div>
+                              </div>
+                            <div class="col-12 my-2">
+                                  <div class="form-floating">
+                                      <input type="telp" class="form-control" id="telp" name="telp" value="<?php echo $row['telp'] ?>" placeholder="telp">
+                                      <label for="telp">Telepon</label>
+                                  </div>
+                              </div>
+                            <div class="col-12 my-2">
+                                  <div class="form-floating">
+                                      <input type="password" class="form-control" id="password" name="password" placeholder="password">
+                                      <label for="password">Password</label>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="modal-footer" style="justify-content: space-between;">
+                              <a onclick="return confirm('Hapus data admin ini?')" type="button" class="btn btn-danger">Hapus</a>
+                              <button type="button" class="btn btn-primary">Simpan</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </td>
             </tr>
             <?php } ?>

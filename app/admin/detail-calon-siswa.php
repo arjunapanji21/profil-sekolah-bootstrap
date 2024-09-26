@@ -31,7 +31,7 @@ $calon_siswa = $calon_siswa->fetch_assoc();
   ?>
 
   <!-- Sidebar -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-info elevation-4">
     <!-- Brand Logo -->
     <label class="brand-link">
       <span class="brand-text">MTs Mau'izhah</span>
@@ -149,7 +149,7 @@ $calon_siswa = $calon_siswa->fetch_assoc();
                         <label for="nama">Nama Lengkap</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <div class="form-floating">
                         <select class="form-select" id="jk" name="jk">
                             <option selected disabled>Pilih jenis kelamin:</option>
@@ -159,19 +159,19 @@ $calon_siswa = $calon_siswa->fetch_assoc();
                         <label for="jk">Jenis Kelamin</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <div class="form-floating">
                         <input type="text" class="form-control" id="tempat_lahir" name="tempat_lahir" value="<?php echo $calon_siswa['tempat_lahir'] ?>" placeholder="Tempat Lahir">
                         <label for="tempat_lahir">Tempat Lahir</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <div class="form-floating">
                         <input type="date" class="form-control" id="tgl_lahir" name="tgl_lahir" value="<?php echo $calon_siswa['tgl_lahir'] ?>" placeholder="Tanggal Lahir">
                         <label for="tgl_lahir">Tanggal Lahir</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <div class="form-floating">
                         <select class="form-select" id="agama" name="agama">
                             <option selected disabled>Pilih agama:</option>
@@ -185,13 +185,13 @@ $calon_siswa = $calon_siswa->fetch_assoc();
                         <label for="agama">Agama</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <div class="form-floating">
                         <input type="number" class="form-control" id="anak_ke" name="anak_ke" value="<?php echo $calon_siswa['anak_ke'] ?>" placeholder="Anak Ke">
                         <label for="anak_ke">Anak Ke</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-2">
                     <div class="form-floating">
                         <input type="number" class="form-control" id="jml_saudara" name="jml_saudara" value="<?php echo $calon_siswa['jml_saudara'] ?>" placeholder="Dari Berapa Saudara">
                         <label for="jml_saudara">Dari Berapa Saudara</label>
@@ -215,37 +215,37 @@ $calon_siswa = $calon_siswa->fetch_assoc();
                         <label for="no_kk">Nomor Kartu Keluarga</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-floating">
                         <input type="number" class="form-control" id="nik_ayah" name="nik_ayah" value="<?php echo $calon_siswa['nik_ayah'] ?>" placeholder="NIK Ayah">
                         <label for="nik_ayah">NIK Ayah</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-floating">
                         <input type="text" class="form-control" id="nama_ayah" name="nama_ayah" value="<?php echo $calon_siswa['nama_ayah'] ?>" placeholder="Nama Ayah">
                         <label for="nama_ayah">Nama Ayah</label>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="number" class="form-control" id="nik_ibu" name="nik_ibu" value="<?php echo $calon_siswa['nik_ibu'] ?>" placeholder="NIK Ibu">
-                        <label for="nik_ibu">NIK Ibu</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" value="<?php echo $calon_siswa['nama_ibu'] ?>" placeholder="Nama Ibu">
-                        <label for="nama_ibu">Nama Ibu</label>
-                    </div>
-                </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-floating">
                         <input type="text" class="form-control" id="pekerjaan_ayah" name="pekerjaan_ayah" value="<?php echo $calon_siswa['pekerjaan_ayah'] ?>" placeholder="Pekerjaan Ayah">
                         <label for="pekerjaan_ayah">Pekerjaan Ayah</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="nik_ibu" name="nik_ibu" value="<?php echo $calon_siswa['nik_ibu'] ?>" placeholder="NIK Ibu">
+                        <label for="nik_ibu">NIK Ibu</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="nama_ibu" name="nama_ibu" value="<?php echo $calon_siswa['nama_ibu'] ?>" placeholder="Nama Ibu">
+                        <label for="nama_ibu">Nama Ibu</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
                     <div class="form-floating">
                         <input type="text" class="form-control" id="pekerjaan_ibu" name="pekerjaan_ibu" value="<?php echo $calon_siswa['pekerjaan_ibu'] ?>" placeholder="Pekerjaan Ibu">
                         <label for="pekerjaan_ibu">Pekerjaan Ibu</label>
@@ -276,7 +276,15 @@ $calon_siswa = $calon_siswa->fetch_assoc();
                         <label for="alamat">Alamat Lengkap</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <?php if($calon_siswa['pasfoto'] == null) { ?>
+                    <div class="col-md-12">
+                    <div class="form-floating bg-light">
+                        <input class="form-control" name="pasfoto" type="file" id="pasfoto">
+                        <label for="pasfoto">Upload Pasfoto</label>
+                    </div>
+                </div>
+                <?php } ?>
+                <div class="col-md-12">
                     <div class="form-floating">
                         <select class="form-select" id="status" name="status">
                             <option selected disabled>Pilih status pendaftaran calon siswa:</option>
@@ -287,7 +295,7 @@ $calon_siswa = $calon_siswa->fetch_assoc();
                         <label for="status">Status Pendaftaran Calon Siswa</label>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-floating">
                         <textarea class="form-control" placeholder="Keterangan" id="keterangan" name="keterangan" style="height: 150px"><?php echo $calon_siswa['keterangan'] ?>
                     </textarea>
