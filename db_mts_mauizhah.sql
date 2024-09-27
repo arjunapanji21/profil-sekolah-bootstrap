@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 26, 2024 at 11:48 AM
+-- Generation Time: Sep 27, 2024 at 09:38 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.2.14
 
@@ -55,10 +55,18 @@ CREATE TABLE `berita` (
   `id` int NOT NULL,
   `admin_id` int NOT NULL,
   `judul` varchar(100) NOT NULL,
-  `konten` blob NOT NULL,
+  `sampul` varchar(50) DEFAULT NULL,
+  `konten` longtext NOT NULL,
   `tanggal` varchar(30) NOT NULL,
   `jumlah_dilihat` int NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `berita`
+--
+
+INSERT INTO `berita` (`id`, `admin_id`, `judul`, `sampul`, `konten`, `tanggal`, `jumlah_dilihat`) VALUES
+(1, 1, 'Penerimaan Siswa Baru MTs Mauizhah Telah Dibuka!', NULL, 'Madrasah Tsanawiyah (MTs) Mauizhah, yang berlokasi di Desa Pulau Pauh, Kecamatan Renah Mendaluh, Kabupaten Tanjung Jabung Barat, dengan bangga mengumumkan bahwa penerimaan siswa baru untuk tahun ajaran 2024/2025 telah resmi dibuka!\r\n\r\nMTs Mauizhah, yang telah berdiri sejak tahun 2010, memiliki visi untuk mencetak generasi yang cerdas, berakhlak mulia, dan berdaya saing global. Dengan dukungan fasilitas yang memadai dan tenaga pengajar yang berpengalaman, MTs Mauizhah terus berkomitmen untuk memberikan pendidikan berkualitas yang berbasis keislaman.\r\n\r\nKeunggulan MTs Mauizhah:\r\nKurikulum Terpadu: Menggabungkan pendidikan agama Islam dengan ilmu pengetahuan umum, sehingga siswa dapat mengembangkan potensi akademik dan spiritual secara seimbang.\r\nFasilitas Pendukung: Ruang kelas yang nyaman, perpustakaan, laboratorium komputer, serta area olahraga yang luas.\r\nEkstrakurikuler Beragam: Berbagai kegiatan seperti Pramuka, seni, olahraga, dan kegiatan keagamaan, memungkinkan siswa untuk mengembangkan bakat dan minat mereka di luar jam pelajaran.\r\nLingkungan Islami: MTs Mauizhah menciptakan suasana pembelajaran yang mendukung tumbuh kembang siswa dalam suasana religius yang harmonis.', '2024-09-27', 0);
 
 -- --------------------------------------------------------
 
@@ -92,13 +100,6 @@ CREATE TABLE `calon_siswa` (
   `tgl_diterima` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Dumping data for table `calon_siswa`
---
-
-INSERT INTO `calon_siswa` (`id`, `nisn`, `nama`, `tempat_lahir`, `tgl_lahir`, `jk`, `agama`, `anak_ke`, `jml_saudara`, `asal_sekolah`, `alamat_sekolah_asal`, `no_kk`, `nik_ayah`, `nama_ayah`, `nik_ibu`, `nama_ibu`, `pekerjaan_ayah`, `pekerjaan_ibu`, `kategori_penghasilan`, `alamat`, `no_telp`, `tgl_daftar`, `tgl_diterima`) VALUES
-(2, '123123', 'Rehan', 'Jambi', '2005-12-31', 'Laki-laki', 'Islam', 1, 2, 'SD 01', 'Jambi', '123123123', '123123123', 'Han', '123123123', 'Re', 'PNS', 'IRT', 'Tinggi', 'Jambi', '08123456789', '2024-09-25 21:35:13', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -121,7 +122,7 @@ CREATE TABLE `kepala_sekolah` (
 --
 
 INSERT INTO `kepala_sekolah` (`id`, `nama`, `email`, `username`, `password`, `alamat`, `telp`, `tgl_dibuat`) VALUES
-(1, 'Kepala Sekolah', 'kepsek@gmail.com', 'kepsek', '$2y$10$rkAvi83xI7E8Y0rLVXXhyO8giRiS/PxeRckVq3N/gqRr60Ava7tB.', 'Jambi', 8123, '2024-09-25 21:55:42');
+(1, 'Kepala Sekolah', 'kepsek@gmail.com', 'kepala', '$2y$10$SV.JwcYxZv23vceUI4nroOREdGAYP2ZHqwq6obDh07hQXleY6rjm.', 'Jambi', 8123, '2024-09-25 21:55:42');
 
 -- --------------------------------------------------------
 
@@ -138,13 +139,6 @@ CREATE TABLE `pendaftaran` (
   `keterangan` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `tgl_dibuat` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `pendaftaran`
---
-
-INSERT INTO `pendaftaran` (`id`, `calon_siswa_id`, `pasfoto`, `ijazah`, `status`, `keterangan`, `tgl_dibuat`) VALUES
-(2, 2, NULL, NULL, 'Proses', 'Upload pasfoto', '2024-09-25 21:35:14');
 
 --
 -- Indexes for dumped tables
@@ -198,13 +192,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `calon_siswa`
 --
 ALTER TABLE `calon_siswa`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `kepala_sekolah`
@@ -216,7 +210,7 @@ ALTER TABLE `kepala_sekolah`
 -- AUTO_INCREMENT for table `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
