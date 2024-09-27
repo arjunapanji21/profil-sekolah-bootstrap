@@ -4,6 +4,41 @@ if(!isset($_SESSION["admin"])) header("Location: ../../login-admin.php");
 
 require_once('../../config.php');
 $data = $conn->query("SELECT * FROM kepala_sekolah");
+
+if(isset($_POST['simpan'])){
+  $id = $_POST['id'];
+  $nama = $_POST['nama'];
+  $email = $_POST['email'];
+  $username = $_POST['username'];
+  $alamat = $_POST['alamat'];
+  $telp = $_POST['telp'];
+
+  $sql = "UPDATE kepala_sekolah SET nama='$nama', email='$email', username='$username', alamat='$alamat', telp='$telp' WHERE id='$id'";
+
+  if (mysqli_query($conn, $sql)) {
+    $_SESSION['alert'] = "Data kepala sekolah berhasil di Update!";
+    header("Location: data-kepala-sekolah.php");
+  } else {
+    $_SESSION['alert'] = "Error updating record: " . mysqli_error($conn);
+    header("Location: data-kepala-sekolah.php");
+  }
+
+  if(isset($_POST['password']) && $_POST['password'] != null){
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    $sql = "UPDATE kepala_sekolah SET password='$password' WHERE id='$id'";
+
+    if (mysqli_query($conn, $sql)) {
+      $_SESSION['alert'] = "Data kepala sekolah berhasil di Update!";
+      header("Location: data-kepala-sekolah.php");
+    } else {
+      $_SESSION['alert'] = "Error updating record: " . mysqli_error($conn);
+      header("Location: data-kepala-sekolah.php");
+    }
+  }
+
+  mysqli_close($conn);
+}
 ?>
 
 <!DOCTYPE html>
@@ -71,6 +106,14 @@ $data = $conn->query("SELECT * FROM kepala_sekolah");
             </a>
           </li>
           <li class="nav-item">
+            <a href="berita.php" class="nav-link">
+              <i class="nav-icon fas fa-newspaper"></i>
+              <p>
+                Berita
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="data-calon-siswa.php" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
@@ -130,7 +173,7 @@ $data = $conn->query("SELECT * FROM kepala_sekolah");
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content">
+    <div class="content px-2">
       <div class="container-fluid">
         <?php if(isset($_SESSION['alert'])) { ?>
           <div class="row">
@@ -169,6 +212,7 @@ $data = $conn->query("SELECT * FROM kepala_sekolah");
                       <i class="fas fa-pen fa-xs"></i>
                     </button>
                     <!-- Modal -->
+                      <form action="" method="post">
                       <div class="modal fade" id="<?php echo $row['username']?>" tabindex="-1" aria-labelledby="<?php echo $row['username']?>Label" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                           <div class="modal-content">
@@ -177,6 +221,7 @@ $data = $conn->query("SELECT * FROM kepala_sekolah");
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+                            <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $row['id'] ?>" placeholder="id">
                             <div class="col-12 my-2">
                                   <div class="form-floating">
                                       <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $row['nama'] ?>" placeholder="Nama">
@@ -215,12 +260,13 @@ $data = $conn->query("SELECT * FROM kepala_sekolah");
                               </div>
                             </div>
                             <div class="modal-footer" style="justify-content: space-between;">
-                              <a onclick="return confirm('Hapus data admin ini?')" type="button" class="btn btn-danger">Hapus</a>
-                              <button type="button" class="btn btn-primary">Simpan</button>
+                              <a onclick="return confirm('Hapus data kepala sekolah?')" type="button" class="btn btn-danger">Hapus</a>
+                              <button type="submit" class="btn btn-primary" name="simpan" value="simpan">Simpan</button>
                             </div>
                           </div>
                         </div>
                       </div>
+                      </form>
                 </td>
             </tr>
             <?php } ?>

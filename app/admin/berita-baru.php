@@ -3,10 +3,40 @@ session_start();
 if(!isset($_SESSION["admin"])) header("Location: ../../login-admin.php");
 
 require_once('../../config.php');
-$calon_siswa = $conn->query("SELECT * FROM calon_siswa");
-$calon_siswa_lulus = $conn->query("SELECT * FROM calon_siswa LEFT JOIN pendaftaran ON calon_siswa.id = pendaftaran.calon_siswa_id WHERE pendaftaran.status='Lulus'");
-$calon_siswa_tidak_lulus = $conn->query("SELECT * FROM calon_siswa LEFT JOIN pendaftaran ON calon_siswa.id = pendaftaran.calon_siswa_id WHERE pendaftaran.status='Tidak Lulus'");
-$jumlah_admin = $conn->query("SELECT * FROM admin");
+$data = $conn->query("SELECT * FROM berita");
+
+if(isset($_POST['submit'])){
+$admin_id = $_SESSION['admin']['id'];
+$judul = $_POST['judul'];
+$konten = $_POST['konten'];
+$tanggal = date('Y-m-d');
+
+$sql = "INSERT INTO berita (admin_id, judul, konten, tanggal) VALUES ('$admin_id', '$judul', '$konten', '$tanggal')";
+
+$conn->query($sql);
+
+if(isset($_FILES['sampul'])){
+  $berita_id = $conn->insert_id;
+  $ekstensi =  array('jpg','jpeg');
+  $filename = $_FILES['sampul']['name'];
+  $ukuran = $_FILES['sampul']['size'];
+  $ext = pathinfo($filename, PATHINFO_EXTENSION);
+   
+  if(!in_array($ext,$ekstensi) ) {
+    header("location:berita.php?alert=gagal_ekstensi");
+  }else{
+    if($ukuran < 1044070){		
+      $sampul = $filename;
+      move_uploaded_file($_FILES['sampul']['tmp_name'], '../../img/uploads/berita/'.$filename);
+      $conn->query("UPDATE berita SET sampul='$sampul' WHERE id='$berita_id'");
+      header("location:berita.php?alert=berhasil");
+    }else{
+      header("location:berita.php?alert=gagal_ukuran");
+    }
+  }
+}
+}
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +44,7 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard Admin | MTs Mau'izhah</title>
+  <title>Buat Berita | MTs Mau'izhah</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -22,6 +52,8 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
   <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.bootstrap5.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -64,7 +96,7 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
-            <a href="dashboard.php" class="nav-link active">
+            <a href="dashboard.php" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Dashboard
@@ -72,7 +104,7 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
             </a>
           </li>
           <li class="nav-item">
-            <a href="berita.php" class="nav-link">
+            <a href="berita.php" class="nav-link active">
               <i class="nav-icon fas fa-newspaper"></i>
               <p>
                 Berita
@@ -125,12 +157,12 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Buat Berita</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Admin</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item active">Berita Baru</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -141,56 +173,26 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
     <!-- Main content -->
     <div class="content px-2">
       <div class="container-fluid">
+        <form action="" method="post">
         <div class="row">
-          <div class="col-6 col-lg-3">
-            <div class="card card-warning card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Calon Siswa Mendaftar</h5>
-              </div>
-              <div class="card-body">
-                <h1 class="card-title font-weight-bold" style="font-size: 32pt; width: 100%; text-align: right;">
-                <?php echo $calon_siswa->num_rows ?>
-              </h1>
-              </div>
-            </div>
+          <div class="mb-3">
+            <label for="judul" class="form-label">Judul Berita</label>
+            <input require type="text" class="form-control" id="judul" name="judul" placeholder="Ketikkan judul berita">
           </div>
-          <div class="col-6 col-lg-3">
-            <div class="card card-success card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Calon Siswa Lulus</h5>
-              </div>
-              <div class="card-body">
-                <h1 class="card-title font-weight-bold" style="font-size: 32pt; width: 100%; text-align: right;">
-                <?php echo $calon_siswa_lulus->num_rows ?>
-              </h1>
-              </div>
-            </div>
+          <div class="mb-3">
+            <label for="konten" class="form-label">Isi Berita</label>
+            <textarea class="form-control" id="konten" name="konten" rows="10"></textarea>
           </div>
-          <div class="col-6 col-lg-3">
-            <div class="card card-danger card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Calon Siswa Tidak Lulus</h5>
-              </div>
-              <div class="card-body">
-                <h1 class="card-title font-weight-bold" style="font-size: 32pt; width: 100%; text-align: right;">
-                <?php echo $calon_siswa_tidak_lulus->num_rows ?>
-              </h1>
-              </div>
+          <div class="mb-3">
+              <label for="sampul" class="form-label">Upload Sampul Berita</label>
+              <input class="form-control" type="file" id="sampul" name="sampul" accept="image/jpeg, image/jpg">
             </div>
-          </div>
-          <div class="col-6 col-lg-3">
-            <div class="card card-info card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Jumlah Admin</h5>
-              </div>
-              <div class="card-body">
-                <h1 class="card-title font-weight-bold" style="font-size: 32pt; width: 100%; text-align: right;">
-                <?php echo $jumlah_admin->num_rows ?>
-              </h1>
-              </div>
+            <div class="mb-3" style="justify-content: space-between;">
+              <a href="berita.php" class="btn btn-secondary">Kembali</a>
+              <button type="submit" class="btn btn-primary" name="submit" value="submit">Submit</button>
             </div>
-          </div>
         </div>
+        </form>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -203,5 +205,12 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
 <!-- ./wrapper -->
 
 <?php include '../component/script.php' ?>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/2.1.7/js/dataTables.bootstrap5.js"></script>
+<script>
+  $('#example').DataTable();
+</script>
 </body>
 </html>

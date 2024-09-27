@@ -71,6 +71,14 @@ $data = $conn->query("SELECT * FROM calon_siswa");
             </a>
           </li>
           <li class="nav-item">
+            <a href="berita.php" class="nav-link">
+              <i class="nav-icon fas fa-newspaper"></i>
+              <p>
+                Berita
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="data-calon-siswa.php" class="nav-link active">
               <i class="nav-icon fas fa-users"></i>
               <p>
@@ -130,7 +138,7 @@ $data = $conn->query("SELECT * FROM calon_siswa");
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content">
+    <div class="content px-2">
       <div class="container-fluid">
         <?php if(isset($_SESSION['alert'])) { ?>
           <div class="row">

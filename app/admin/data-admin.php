@@ -105,6 +105,14 @@ if(isset($_POST['simpan'])){
             </a>
           </li>
           <li class="nav-item">
+            <a href="berita.php" class="nav-link">
+              <i class="nav-icon fas fa-newspaper"></i>
+              <p>
+                Berita
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="data-calon-siswa.php" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
@@ -164,7 +172,7 @@ if(isset($_POST['simpan'])){
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content">
+    <div class="content px-2">
       <div class="container-fluid">
         <div class="row m-2 p-2 bg-light shadow-sm">
         <table id="example" class="table table-striped" style="width:100%">

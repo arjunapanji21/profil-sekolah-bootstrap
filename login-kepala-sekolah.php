@@ -26,7 +26,7 @@ if(isset($_POST['login'])){
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
         $conn->close();
-        die();
+        header("Location: login-kepala-sekolah.php");
     }
 }
 

@@ -121,12 +121,12 @@ $calon_siswa = $calon_siswa->fetch_assoc();
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="content">
+    <div class="content px-2">
       <div class="container-fluid">
         <div class="row">
           <?php if($calon_siswa['pasfoto'] == null) { ?>
             <div class="col-12">
-            <div class="card card-danger card-outline">
+            <div class="card card-warning card-outline">
             <div class="card-header">
                 Lengkapi Data Diri
               </div>
@@ -137,9 +137,24 @@ $calon_siswa = $calon_siswa->fetch_assoc();
             </div>
           </div>
           <?php } ?>
+          <?php if($calon_siswa['pasfoto'] != null && $calon_siswa['status'] == 'Proses') { ?>
+            <div class="col-12">
+            <div class="card card-warning card-outline">
+            <div class="card-header">
+                Status Pendaftaran
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">
+                  Sedang di proses
+                  </h5>
+                <p class="card-text"><?php echo $calon_siswa['keterangan'] ?></p>
+              </div>
+            </div>
+          </div>
+          <?php } ?>
           <?php if($calon_siswa['status'] == "Lulus") { ?>
             <div class="col-12">
-            <div class="card card-info card-outline">
+            <div class="card card-success card-outline">
             <div class="card-header">
                 Pengumuman
               </div>
@@ -150,9 +165,9 @@ $calon_siswa = $calon_siswa->fetch_assoc();
             </div>
           </div>
           <?php } ?>
-          <?php if($calon_siswa['status'] == "Belum Lulus") { ?>
+          <?php if($calon_siswa['status'] == "Tidak Lulus") { ?>
             <div class="col-12">
-            <div class="card card-info card-outline">
+            <div class="card card-danger card-outline">
             <div class="card-header">
                 Pengumuman
               </div>

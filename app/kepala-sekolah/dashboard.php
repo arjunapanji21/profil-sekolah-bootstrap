@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if(!isset($_SESSION["admin"])) header("Location: ../../login-admin.php");
+if(!isset($_SESSION["kepala_sekolah"])) header("Location: ../../login-kepala-sekolah.php");
 
 require_once('../../config.php');
 $calon_siswa = $conn->query("SELECT * FROM calon_siswa");
@@ -14,7 +14,7 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard Admin | MTs Mau'izhah</title>
+  <title>Dashboard Kepala Sekolah | MTs Mau'izhah</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -44,7 +44,7 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
           <img src="../dist/img/AdminLTELogo.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?php echo $_SESSION['admin']['nama'] ?></a>
+          <a href="#" class="d-block"><?php echo $_SESSION['kepala_sekolah']['nama'] ?></a>
         </div>
       </div>
 
@@ -72,14 +72,6 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
             </a>
           </li>
           <li class="nav-item">
-            <a href="berita.php" class="nav-link">
-              <i class="nav-icon fas fa-newspaper"></i>
-              <p>
-                Berita
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a href="data-calon-siswa.php" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
@@ -87,22 +79,14 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="data-kepala-sekolah.php" class="nav-link">
+          <!-- <li class="nav-item">
+            <a href="profil-saya.php" class="nav-link">
               <i class="nav-icon fas fa-user-tie"></i>
               <p>
-                Data Kepala Sekolah
+                Profil Saya
               </p>
             </a>
-          </li>
-          <li class="nav-item">
-            <a href="data-admin.php" class="nav-link">
-              <i class="nav-icon fas fa-user-tie"></i>
-              <p>
-                Data Admin
-              </p>
-            </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="../../logout.php" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
@@ -129,7 +113,7 @@ $jumlah_admin = $conn->query("SELECT * FROM admin");
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Admin</a></li>
+              <li class="breadcrumb-item"><a href="#">Kepala Sekolah</a></li>
               <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
